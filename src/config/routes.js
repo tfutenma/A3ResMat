@@ -27,7 +27,9 @@ routes.post('/tensaoNormal', (req, res) => {
         return res.status(400).end()
     }
     const result = tensaoNormal(body.N,body.A)
-    return res.json({result})
+    const formula = "σ = N/A"
+    const obj = {result, formula}
+    return res.json({obj})
 })
 
 routes.post('/tensaoMax', (req, res) => {
@@ -46,8 +48,10 @@ routes.post('/tensaoCis', (req, res) => {
     if(!body){
         return res.status(400).end()
     }
-    const result = tensaoCis(body.a,body.b)
-    return res.json({result})
+    const result = tensaoCis(body.V,body.Q,body.I,body.t)
+    const formula = "τ = (V*Q)/(I*t)"
+    const obj = {result, formula}
+    return res.json({obj})
 })
 
 routes.post('/momentoFletor', (req, res) => {
@@ -55,8 +59,10 @@ routes.post('/momentoFletor', (req, res) => {
     if(!body){
         return res.status(400).end()
     }
-    const result = momentoFletor(body.a,body.b)
-    return res.json({result})
+    const result = momentoFletor()
+    const formula = ""
+    const obj = {result, formula}
+    return res.json({obj})
 })
 
 routes.post('/momentoTorsor', (req, res) => {
@@ -64,8 +70,10 @@ routes.post('/momentoTorsor', (req, res) => {
     if(!body){
         return res.status(400).end()
     }
-    const result = momentoTorsor(body.a,body.b)
-    return res.json({result})
+    const result = momentoTorsor()
+    const formula = ""
+    const obj = {result, formula}
+    return res.json({obj})
 })
 
 module.exports = routes
