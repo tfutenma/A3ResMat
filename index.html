@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type = "text/javascript">  
+    async function adicao() {   
+    let n1 =parseFloat(document.getElementById("n1").value);
+    let n2 =parseFloat(document.getElementById("n2").value);
+    const json = {
+        "n1":n1,
+        "n2":n2
+    }
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(json),
+    };
+    retorno = await fetch('http://127.0.0.1:9090/adicao', options)
+        .then(data => {
+            return data.json()
+        }).then(res => {
+            console.log(res)
+            campoRes = document.getElementById("result")
+            campoRes.value = res.result
+        });
+
+    }
+
+
+</script>  
+</head>
+
+<body>
+
+<h1>Calc</h1>
+<p>Adicao</p>
+
+
+<label>n1 <input type="text" id="n1" name="n1" /></label>
+<label>n2 <input type="text" id="n2" name="n2" /></label>
+
+<button onclick="adicao()">Calcular</button>
+
+<label>total <input type="text" id="result" name="n2" /></label>
+
+</body>
+</html>

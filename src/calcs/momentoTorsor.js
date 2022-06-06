@@ -1,3 +1,3 @@
-module.exports = function (a,b){
-    return a + b
+module.exports = function (T, c, J){
+    return (T*c)/J 
 }
